@@ -17,7 +17,7 @@ title: Fight 31
 email: kyletaylored@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   This site serves one purpose and one purpose only - to find your 31 year old fighter.
-baseurl: "/isitgreenorblue" # the subpath of your site, e.g. /blog
+baseurl: "/fight31" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: kyletaylored
 github_username: kyletaylored
