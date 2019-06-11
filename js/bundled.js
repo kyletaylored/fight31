@@ -198,10 +198,9 @@ function getResultUrl(year, s) {
   };
 
   // Map sex to code.
-  let sex = gender[s];
   let genderQuery = "";
-  if (s) {
-    genderQuery = `wdt:P21 wd:${sex} ;`;
+  if (typeof s !== "undefined") {
+    genderQuery = `wdt:P21 wd:${s} ;`;
   }
 
   const sparql = `

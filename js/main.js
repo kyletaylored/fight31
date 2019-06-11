@@ -1,7 +1,7 @@
 (function($) {
   $(document).ready(function() {
     // Populate years.
-    $(".yearselect").yearselect();
+    $(".yearselect").yearselect({ start: 1950 });
 
     $("#color-check").submit(function(event) {
       event.preventDefault();
