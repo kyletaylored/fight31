@@ -22,15 +22,19 @@
         console.log(data);
         var results = data.results.bindings;
         var fighter = results[Math.floor(Math.random() * results.length)];
-        console.log(fighter);
-        var fightLink = fighter.wikipedia_article.value;
-        $form.append(
-          "<h2 class='answer'>You're fighting: <a href='" +
-            fightLink +
-            "'>" +
-            fighter.name.value +
-            "</a></h2>"
-        );
+        if (typeof fighter !== "undefined") {
+          console.log(fighter);
+          var fightLink = fighter.wikipedia_article.value;
+          $form.append(
+            "<h2 class='answer'>You're fighting: <a href='" +
+              fightLink +
+              "'>" +
+              fighter.name.value +
+              "</a></h2>"
+          );
+        } else {
+          $form.append("<h2 class='answer'>Lucky you, you're too old.</h2>");
+        }
       });
     });
   });
