@@ -10,7 +10,7 @@ layout: default
   <select class="yearselect d-block w-100" id="birthyear" required=""></select>
 	
 	<label for="gender" class="sr-only">Gender (optional)</label>
-	<select class="d-block w-100" id="gender" required="">
+	<select class="d-block w-100" id="gender">
 	<option value="">Gender (optional)</option>
 	<option value="Q6581097">Male</option>
 	<option value="Q6581072">Female</option>
