@@ -17,6 +17,7 @@
         console.log(data);
         var results = data.results.bindings;
         var fighter = results[Math.floor(Math.random() * results.length)];
+        console.log(fighter);
         $form.append(
           "<h2 class='answer'>You're fighting: " + fighter.name.value + "</h2>"
         );
