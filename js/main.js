@@ -16,14 +16,18 @@ function cleanFighters(fighters) {
     $("#fight-form").submit(function(event) {
       event.preventDefault();
       var $form = $(this);
+      var $arena = $(".fighter");
       var year = $("#birthyear", $form).val();
       var gender = $("#gender", $form).val();
       console.log("year", year);
       console.log("gender", gender);
+
+      // Empty arena.
+      $arena.html("");
+
       $(".loading").removeClass("hidden");
       var getRes =
         gender == "" ? getResultUrl(year) : getResultUrl(year, gender);
-
       console.log(getRes);
 
       $.ajax({
@@ -38,18 +42,16 @@ function cleanFighters(fighters) {
           console.log(fighter);
           var fightLink = fighter.wikipedia_article.value;
           var fightPic = fighter.picture.value;
-          var markup = `
-					<h2 class="answer">You're fighting: </h2><br>
-					<div class="thumbnail">
-					<img alt="name" src="${fightPic}" style="height: 200px; width: auto; display: block;">
-					<div class="caption">
-						<h3><a href="${fightLink}">${fighter.name.value}</a></h3>
-					</div>
-				</div>`;
-          $(".fighter").html(markup);
+          var markup =
+            '<h2 class="answer">You&apos;re fighting: </h2><br><div class="thumbnail"><img alt="name" src="' +
+            fightPic +
+            '" style="height: 200px; width: auto; display: block;"><div class="caption"><h3><a href="${fightLink}">' +
+            fighter.name.value +
+            "</a></h3></div></div>";
+          $arena.html(markup);
         } else {
-          $(".fighter").html(
-            "<h2 class='answer'>Lucky you, you're too old.</h2>"
+          $arena.html(
+            "<h2 class='answer'>Lucky you, they're all dead (probably).</h2>"
           );
         }
       });
