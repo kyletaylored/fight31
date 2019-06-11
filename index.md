@@ -11,6 +11,7 @@ layout: default
 	
 	<label for="gender" class="sr-only">Gender (optional)</label>
 	<select class="d-block w-100" id="gender" required="">
+	<option value="">Gender (optional)</option>
 	<option value="Q6581097">Male</option>
 	<option value="Q6581072">Female</option>
 	<option value="Q1097630">Intersex</option>
