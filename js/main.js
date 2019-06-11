@@ -12,10 +12,9 @@
       console.log(getResultUrl(year, gender));
       $.ajax({
         url: getResultUrl(year, gender),
-        done: function(data) {
-          console.log(data);
-        }
-      });
+      }).done(data) {
+				console.log(data);
+			};
     });
   });
 })(jQuery);
