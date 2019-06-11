@@ -37,4 +37,5 @@ layout: default
 			</select>
 		</div>
 	</div><button class="btn btn-lg btn-primary btn-block" style="margin-top:1em" type="submit">Get challenger!</button>
+	<div class="loading hidden"> 🥊</div>
 </form>
