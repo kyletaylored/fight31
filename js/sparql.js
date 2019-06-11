@@ -29,21 +29,22 @@ function getResultUrl(year, gender) {
   year = year - 31;
 
   const sparql = `
-      SELECT ?person ?name ?wikipedia_article
-      WHERE
-      {
-        ?person wdt:P31 wd:Q5 ;   # human
-           ${genderQuery}
-           wdt:P569 ?born .
-        FILTER (?born >= "${year}-01-01T00:00:00Z"^^xsd:dateTime && ?born <= "${year}-12-31T23:59:59Z"^^xsd:dateTime) .
-        ?person wikibase:sitelinks ?linkcount .
-        FILTER (?linkcount > 50) .
-        ?person rdfs:label ?name FILTER(lang(?name)="en").
-        ?wikipedia_article schema:about ?person .
-        ?wikipedia_article schema:isPartOf <https://en.wikiquote.org/> .
+      SELECT ?name ?picture ?born ?died ?wikipedia_article WHERE {
+        ?person wdt:P31 wd:Q5;
+          wdt:P18 ?picture;
+          ${genderQuery}
+          wdt:P569 ?born.
+        OPTIONAL { ?person wdt:P570 ?died. }
+        FILTER((?born >= "${year}-01-01T00:00:00Z"^^xsd:dateTime) && (?born <= "${year}-12-31T23:59:59Z"^^xsd:dateTime))
+        ?person wikibase:sitelinks ?linkcount.
+        FILTER(?linkcount > 50 )
+        ?person rdfs:label ?name.
+        FILTER((LANG(?name)) = "en")
+        ?wikipedia_article schema:about ?person;
+          schema:isPartOf <https://en.wikipedia.org/>.
       }
-      ORDER BY DESC(?linkcount)
-      LIMIT 100
+      ORDER BY DESC (?linkcount)
+      LIMIT 25
       `;
 
   return wdk.sparqlQuery(sparql);
