@@ -8,11 +8,16 @@
       var $form = $(this);
       var year = $("#birthyear", $form).val();
       var gender = $("#gender", $form).val();
+      console.log("year", year);
+      console.log("gender", gender);
 
-      console.log(getResultUrl(year, gender));
+      var getRes =
+        gender == "" ? getResultUrl(year) : getResultUrl(year, gender);
+
+      console.log(getRes);
 
       $.ajax({
-        url: getResultUrl(year, gender)
+        url: getRes
       }).done(function(data) {
         console.log(data);
         var results = data.results.bindings;

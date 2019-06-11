@@ -12,7 +12,7 @@ layout: default
 	</select>
 	
 	<label for="gender" class="sr-only">Gender (optional)</label>
-	<select class="d-block w-100" id="gender">
+	<select class="d-block w-100 mb-3" id="gender">
 	<option value="">Your Gender (optional)</option>
 	<option value="Q6581097">Male</option>
 	<option value="Q6581072">Female</option>
@@ -21,6 +21,6 @@ layout: default
 	<option value="Q2449503">Transgender Male</option>
 	</select>
 
-<button class="btn btn-lg btn-primary btn-block" type="submit">Get challenger!</button>
+<button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top:1em">Get challenger!</button>
 
 </form>
