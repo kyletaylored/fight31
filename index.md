@@ -14,11 +14,11 @@ layout: default
 	<label for="gender" class="sr-only">Gender (optional)</label>
 	<select class="d-block w-100 mb-3" id="gender">
 	<option value="">Your Gender (optional)</option>
-	<option value="Q6581097">Male</option>
-	<option value="Q6581072">Female</option>
-	<option value="Q1097630">Intersex</option>
-	<option value="Q1052281">Transgender Female</option>
-	<option value="Q2449503">Transgender Male</option>
+	<option value="male">Male</option>
+	<option value="female">Female</option>
+	<option value="intersex">Intersex</option>
+	<option value="transgender female">Transgender Female</option>
+	<option value="transgender male">Transgender Male</option>
 	</select>
 
 <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top:1em">Get challenger!</button>

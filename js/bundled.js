@@ -189,6 +189,7 @@ const wdk = require("wikibase-sdk")({
  * @param {string} gender Your identified gender.
  */
 function getResultUrl(year, gender) {
+  // Define gender codes
   let g = {
     male: "Q6581097",
     female: "Q6581072",
@@ -198,9 +199,10 @@ function getResultUrl(year, gender) {
   };
 
   // Map sex to code.
-  let genderQuery = "";
-  if (typeof gender !== "undefined" || gender !== "") {
-    genderQuery = `wdt:P21 wd:${gender} ;`;
+  let genderQuery = "# gender query";
+  let newGen = g[gender];
+  if (typeof newGen !== "undefined") {
+    genderQuery = `wdt:P21 wd:${newGen} ;`;
   }
 
   // Update year
