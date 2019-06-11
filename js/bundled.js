@@ -224,6 +224,8 @@ function getResultUrl(year, s) {
   return wdk.sparqlQuery(sparql);
 }
 
+window.getResultUrl = getResultUrl;
+
 },{"wikibase-sdk":29}],5:[function(require,module,exports){
 const toDateObject = require('./wikibase_time_to_date_object')
 

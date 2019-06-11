@@ -43,3 +43,5 @@ function getResultUrl(year, s) {
 
   return wdk.sparqlQuery(sparql);
 }
+
+window.getResultUrl = getResultUrl;
