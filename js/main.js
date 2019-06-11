@@ -46,9 +46,11 @@ function cleanFighters(fighters) {
 						<h3><a href="${fightLink}">${fighter.name.value}</a></h3>
 					</div>
 				</div>`;
-          $form.append(markup);
+          $(".fighter").html(markup);
         } else {
-          $form.append("<h2 class='answer'>Lucky you, you're too old.</h2>");
+          $(".fighter").html(
+            "<h2 class='answer'>Lucky you, you're too old.</h2>"
+          );
         }
       });
     });
