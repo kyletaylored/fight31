@@ -1,13 +1,15 @@
-
 .wrapper {
   height: 80%;
 }
+
 .page-content {
   height: 100vh;
 }
+
 .text {
-  text-shadow: 0 0 10px rgba(0,0,0,0.35);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
+
 .site-footer {
   position: fixed;
   bottom: 0;
@@ -18,4 +20,24 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.loading.hidden {
+  display: none;
+}
+
+.loading {
+  animation: move 2s infinite;
+  position: relative;
+  font-size: 50px;
+}
+
+@keyframes move {
+  0% {
+    transform: rotate(0)
+  }
+
+  50% {
+    transform: rotate(360deg)
+  }
 }
