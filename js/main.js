@@ -10,11 +10,12 @@
       var gender = $("#gender", $form).val();
 
       console.log(getResultUrl(year, gender));
+
       $.ajax({
-        url: getResultUrl(year, gender),
-      }).done(data) {
-				console.log(data);
-			};
+        url: getResultUrl(year, gender)
+      }).done(function(data) {
+        console.log(data);
+      });
     });
   });
 })(jQuery);
