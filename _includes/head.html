@@ -25,7 +25,7 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
 
   <meta name="author" content="Fight31">
-  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: absolute_url }}">
   <meta property="og:type" content="website">
   <meta property="twitter:creator" content="{{ site.twitter_username }}">
   <meta property="twitter:site" content="{{ site.twitter_username }}">
@@ -35,8 +35,8 @@
   <meta name="twitter:site" content="{{ site.twitter_username }}">
   <meta name="twitter:creator" content="{{ site.twitter_username }}">
 
-  <meta property="og:image" content="{{ site.url }}/fight31-white.jpg">
-  <meta name="twitter:image" content="{{ site.url}}/fight31-white.jpg">
+  <meta property="og:image" content="{{ absolute_url }}/fight31-white.jpg">
+  <meta name="twitter:image" content="{{ absolute_url }}/fight31-white.jpg">
   
   {% if jekyll.environment == 'production' and site.google_analytics %}
   {% include google-analytics.html %}
