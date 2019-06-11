@@ -6,10 +6,10 @@ const wdk = require("wikibase-sdk")({
 /**
  * Returns the URL to fetch for the JSON results from Wikimedia
  * @param {int} year The year you were born.
- * @param {string} sex Your identified gender.
+ * @param {string} gender Your identified gender.
  */
-function getResultUrl(year, s) {
-  let gender = {
+function getResultUrl(year, gender) {
+  let g = {
     male: "Q6581097",
     female: "Q6581072",
     intersex: "Q1097630",
@@ -19,9 +19,12 @@ function getResultUrl(year, s) {
 
   // Map sex to code.
   let genderQuery = "";
-  if (typeof s !== "undefined") {
-    genderQuery = `wdt:P21 wd:${s} ;`;
+  if (typeof gender !== "undefined" || gender !== "") {
+    genderQuery = `wdt:P21 wd:${gender} ;`;
   }
+
+  // Update year
+  year = year - 31;
 
   const sparql = `
       SELECT ?person ?name ?wikipedia_article

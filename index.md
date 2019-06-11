@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<form class="form-signin">
+<form id="fight-form" class="form">
 
   <h1 class="h3 mb-3 font-weight-normal">Choose your weight class:</h1>
   
@@ -10,7 +10,7 @@ layout: default
   <select class="yearselect d-block w-100" id="birthyear" required=""></select>
 	
 	<label for="gender" class="sr-only">Gender (optional)</label>
-	<select class="d-block w-100" id="birthyear" required="">
+	<select class="d-block w-100" id="gender" required="">
 	<option value="Q6581097">Male</option>
 	<option value="Q6581072">Female</option>
 	<option value="Q1097630">Intersex</option>
