@@ -19,11 +19,6 @@ layout: default
 	<option value="Q2449503">Transgender Male</option>
 	</select>
 
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+<button class="btn btn-lg btn-primary btn-block" type="submit">Get challenger!</button>
+
 </form>
