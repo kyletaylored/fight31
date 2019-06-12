@@ -28,6 +28,9 @@ layout: default
 				<option value="intersex">
 					Intersex
 				</option>
+				<option value="non-binary">
+					Non-binary
+				</option>
 				<option value="transgender female">
 					Transgender Female
 				</option>

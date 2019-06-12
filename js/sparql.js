@@ -14,6 +14,7 @@ function getResultUrl(year, gender) {
     male: "Q6581097",
     female: "Q6581072",
     intersex: "Q1097630",
+    "non-binary": "Q48270",
     "transgender female": "Q1052281",
     "transgender male": "Q2449503"
   };
