@@ -6,10 +6,12 @@ layout: default
 	<h1 class="h3 mb-3 font-weight-normal">Choose your weight class:</h1>
 	<div class="row">
 		<div class="col-md-6 mb-3">
-			<label for="birthyear">Your Birth Year</label>
-			<input type="range" min="1950" max="2009" value="1990" id="birthyear-input" 
-				step="1" oninput="outputUpdate(value)">
-			<output for="birthyear" id="birthyear">1990</output>
+			<label for="birthyear">Your Birth Year</label><br>
+			<select class="yearselect d-block w-100" id="birthyear" required="">
+				<option value="">
+					Your Birth Year
+				</option>
+			</select>
 		</div>
 		<div class="col-md-6 mb-3">
 			<label for="gender">Your Gender (optional)</label><br>
