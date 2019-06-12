@@ -6,15 +6,22 @@ function cleanFighters(fighters) {
   });
 }
 
-(function($) {
-  $(document).ready(function() {
+(function ($) {
+  $(document).ready(function () {
     // Populate years.
     $(".yearselect").yearselect({
       start: 1950,
       selected: 1985
     });
 
-    $("#fight-form").submit(function(event) {
+    $('.gender').on('click', function (e) {
+      e.preventDefault();
+      $('.gender.btn-primary').removeClass('btn-primary');
+      $(this).addClass('btn-primary');
+      $('#gender').val($(this).data('gender'));
+    })
+
+    $("#fight-form").submit(function (event) {
       event.preventDefault();
       var $form = $(this);
       var $arena = $(".fighter");
@@ -35,7 +42,7 @@ function cleanFighters(fighters) {
 
       $.ajax({
         url: getRes
-      }).done(function(data) {
+      }).done(function (data) {
         $(".loading").addClass("hidden");
         console.log(data);
         var results = cleanFighters(data.results.bindings);
@@ -63,3 +70,7 @@ function cleanFighters(fighters) {
     });
   });
 })(jQuery);
+
+function outputUpdate(vol) {
+  document.querySelector("#birthyear").value = vol;
+}
