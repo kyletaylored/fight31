@@ -39,7 +39,16 @@ layout: default
 				</option>
 			</select>
 		</div>
-	</div><button class="btn btn-lg btn-primary btn-block" style="margin-top:1em" type="submit">Get challenger!</button>
+	</div>
+	<div class="row">
+		<div class="custom-control custom-checkbox sr-only">
+			<input type="checkbox" class="custom-control-input" id="notfamous">
+			<label class="custom-control-label" for="notfamous"><em>Do you care if they're famous?</em></label>
+		</div>
+	</div>
+	<div class="row">
+		<button class="btn btn-lg btn-primary btn-block" style="margin-top:1em" type="submit">Get challenger!</button>
+	</div>
 	<div class="loading hidden"> 🥊</div>
 	<div class="fighter"></div>
 </form>
