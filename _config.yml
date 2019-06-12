@@ -27,8 +27,6 @@ google_analytics: UA-36441409-6
 # Build settings
 markdown: kramdown
 theme: minima
-gems:
-  - jekyll-feed
 exclude:
   - Gemfile
   - Gemfile.lock
