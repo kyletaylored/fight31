@@ -6,15 +6,41 @@ function cleanFighters(fighters) {
   });
 }
 
-(function($) {
-  $(document).ready(function() {
+(function ($) {
+
+  $(document).ready(function () {
     // Populate years.
     $(".yearselect").yearselect({
       start: 1950,
       selected: 1985
     });
 
-    $("#fight-form").submit(function(event) {
+    $('.gender').on('click', function (e) {
+      e.preventDefault();
+      $('.gender.btn-primary').removeClass('btn-primary');
+      $(this).addClass('btn-primary');
+      $('#gender').val($(this).data('gender'));
+    });
+
+    $('input[type="range"]').rangeslider({
+
+      // Feature detection the default is `true`.
+      // Set this to `false` if you want to use
+      // the polyfill also in Browsers which support
+      // the native <input type="range"> element.
+      polyfill: false,
+
+      // Callback function
+      onInit: function () {},
+
+      // Callback function
+      onSlide: function (position, value) {},
+
+      // Callback function
+      onSlideEnd: function (position, value) {}
+    });
+
+    $("#fight-form").submit(function (event) {
       event.preventDefault();
       var $form = $(this);
       var $arena = $(".fighter");
@@ -35,7 +61,7 @@ function cleanFighters(fighters) {
 
       $.ajax({
         url: getRes
-      }).done(function(data) {
+      }).done(function (data) {
         $(".loading").addClass("hidden");
         console.log(data);
         var results = cleanFighters(data.results.bindings);
@@ -54,6 +80,9 @@ function cleanFighters(fighters) {
             fighter.name.value +
             "</a></h3></div></div>";
           $arena.html(markup);
+          $("html, body").animate({
+            scrollTop: $(document).height()
+          }, 1000);
         } else {
           $arena.html(
             "<h2 class='answer'>You're a snowflake, or they're all dead (probably).</h2>"
@@ -63,3 +92,7 @@ function cleanFighters(fighters) {
     });
   });
 })(jQuery);
+
+function outputUpdate(vol) {
+  document.querySelector("#birthyear").value = vol;
+}
