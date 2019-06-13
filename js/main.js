@@ -5,6 +5,14 @@ function cleanFighters(fighters) {
     }
   });
 }
+/**
+ * Get a smaller version of the photo because some of them are large.
+ * @param  {string} link Path to the photo.
+ * @return {string}      Updated path to photo.
+ */
+function resizePhoto(link) {
+  return "https://commons.wikimedia.org/w/thumb.php?width=500&f=" + link.substring(link.lastIndexOf('/')+1);
+}
 
 (function ($) {
 
@@ -70,7 +78,8 @@ function cleanFighters(fighters) {
         if (typeof fighter !== "undefined") {
           console.log(fighter);
           var fightLink = fighter.wikipedia_article.value;
-          var fightPic = fighter.picture.value;
+          var fightPic = resizePhoto(fighter.picture.value);
+
           var markup =
             '<h2 class="answer">You&apos;re fighting: </h2><br><div class="thumbnail"><img alt="name" src="' +
             fightPic +

@@ -30,15 +30,15 @@ layout: default
     		<label class="custom-control-label" for="notfamous"><em style="font-weight: normal"> (I don't care if they're famous)</em></label>
     	</div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
 		<div class="col-md-12">
     	<button class="btn btn-lg btn-primary btn-block" style="margin-top:1em" type="submit">Get challenger!</button>
 		</div>
     </div>
-    <div class="loading-wrapper hidden">
-        <div class="loading"> 🥊</div>
-        <div>
-            <br> (calculating matchup...)
+    <div class="loading-wrapper hidden row">
+        <div class="loading col-md-6 col-md-offset-3"> 🥊</div>
+        <div class="col-md-6 col-md-offset-3">
+            <br> <em>calculating matchup...</em>
         </div>
     </div>
     <div class="fighter"></div>
