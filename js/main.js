@@ -55,14 +55,14 @@ function cleanFighters(fighters) {
       // Empty arena.
       $arena.html("");
 
-      $(".loading").removeClass("hidden");
+      $(".loading-wrapper").removeClass("hidden");
       var getRes = getResultUrl(year, gender, notfamous);
       console.log(getRes);
 
       $.ajax({
         url: getRes
       }).done(function (data) {
-        $(".loading").addClass("hidden");
+        $(".loading-wrapper").addClass("hidden");
         console.log(data);
         var results = cleanFighters(data.results.bindings);
         console.log(results);
@@ -85,7 +85,7 @@ function cleanFighters(fighters) {
           }, 1000);
         } else {
           $arena.html(
-            "<h2 class='answer'>You're a snowflake, or they're all dead (probably).</h2>"
+            "<h2 class='answer'>You're a snowflake, or they're all dead by now (likely).</h2>"
           );
         }
       });

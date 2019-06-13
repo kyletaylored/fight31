@@ -35,7 +35,12 @@ layout: default
     	<button class="btn btn-lg btn-primary btn-block" style="margin-top:1em" type="submit">Get challenger!</button>
 		</div>
     </div>
-    <div class="loading hidden"> 🥊</div>
+    <div class="loading-wrapper hidden">
+        <div class="loading"> 🥊</div>
+        <div>
+            <br> (calculating matchup...)
+        </div>
+    </div>
     <div class="fighter"></div>
 
 </form>
