@@ -9,7 +9,7 @@ layout: default
 	<div class="row">
 	<div class="col-md-12 mb-3">
 		<label for="birthyear">Your Birth Year</label>
-			<input type="range" min="1950" max="2009" value="1990" id="birthyear-input" 
+			<input type="range" min="1950" max="2009" value="1990" id="birthyear-input"
 				step="1" oninput="outputUpdate(value)">
 			<output for="birthyear" id="birthyear">1990</output>
 			</div>
@@ -27,7 +27,7 @@ layout: default
     <div class="row">
     	<div class="custom-control custom-checkbox">
     		<input type="checkbox" class="custom-control-input" id="notfamous">
-    		<label class="custom-control-label" for="notfamous"><em>Do you care if they're famous?</em></label>
+    		<label class="custom-control-label" for="notfamous"><em style="font-weight: normal"> (I don't care if they're famous)</em></label>
     	</div>
     </div>
     <div class="row">

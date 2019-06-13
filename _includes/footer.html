@@ -2,20 +2,27 @@
 
   <div class="wrapper">
 
-    <div class="">
+    <div class="row">
+      <div class="col-md-6">
       <ul class="social-media-list">
-        {% if site.github_username %}
         <li>
-          {% include icon-github.html username=site.github_username %}
+          {% include icon-github.html username="kyletaylored" %}
         </li>
-        {% endif %}
-
-        {% if site.twitter_username %}
         <li>
-          {% include icon-twitter.html username=site.twitter_username %}
+          {% include icon-twitter.html username="kyletaylored" %}
         </li>
-        {% endif %}
       </ul>
+      </div>
+      <div class="col-md-6">
+      <ul class="social-media-list">
+        <li>
+          {% include icon-github.html username="mattbtay" %}
+        </li>
+        <li>
+          {% include icon-twitter.html username="mattbtay" %}
+        </li>
+      </ul>
+      </div>
     </div>
 
   </div>
