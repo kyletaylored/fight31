@@ -7,6 +7,7 @@ function cleanFighters(fighters) {
 }
 
 (function ($) {
+
   $(document).ready(function () {
     // Populate years.
     $(".yearselect").yearselect({
@@ -19,7 +20,25 @@ function cleanFighters(fighters) {
       $('.gender.btn-primary').removeClass('btn-primary');
       $(this).addClass('btn-primary');
       $('#gender').val($(this).data('gender'));
-    })
+    });
+
+    $('input[type="range"]').rangeslider({
+
+      // Feature detection the default is `true`.
+      // Set this to `false` if you want to use
+      // the polyfill also in Browsers which support
+      // the native <input type="range"> element.
+      polyfill: false,
+
+      // Callback function
+      onInit: function () {},
+
+      // Callback function
+      onSlide: function (position, value) {},
+
+      // Callback function
+      onSlideEnd: function (position, value) {}
+    });
 
     $("#fight-form").submit(function (event) {
       event.preventDefault();
@@ -61,6 +80,9 @@ function cleanFighters(fighters) {
             fighter.name.value +
             "</a></h3></div></div>";
           $arena.html(markup);
+          $("html, body").animate({
+            scrollTop: $(document).height()
+          }, 1000);
         } else {
           $arena.html(
             "<h2 class='answer'>You're a snowflake, or they're all dead (probably).</h2>"
