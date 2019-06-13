@@ -1,7 +1,6 @@
 .wrapper {
-  order: 0;
-  flex: 1 1 auto;
-  align-self: auto;
+  padding: 0 !important;
+  flex: 2 1 auto;
 }
 
 .page-content {
@@ -27,31 +26,11 @@
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
 
-.thumbnail {
-  border: 0;
-}
-
 .site-footer {
-  order: 0;
-  flex: 0 1 auto;
-  align-self: flex-end;
   width: 100%;
-  max-width: auto;
-  border: 0;
-  padding: 0;
 }
 
-.content {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.btn:focus,
-.btn:active,
-.btn:active:focus {
-  outline: none;
-}
+.content {}
 
 .loading.hidden {
   display: none;
