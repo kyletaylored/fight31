@@ -107,8 +107,9 @@ $.wait = function( callback, seconds){
       });
     });
   });
-})(jQuery);
 */
+})(jQuery);
+
 function outputUpdate(vol) {
   document.querySelector("#birthyear").value = vol;
 }
