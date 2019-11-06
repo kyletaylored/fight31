@@ -14,6 +14,10 @@ function resizePhoto(link) {
   return "https://commons.wikimedia.org/w/thumb.php?width=500&f=" + link.substring(link.lastIndexOf('/')+1);
 }
 
+$.wait = function( callback, seconds){
+   return window.setTimeout( callback, seconds * 1000 );
+}
+
 (function ($) {
 
   $(document).ready(function () {
@@ -63,6 +67,9 @@ function resizePhoto(link) {
       // Empty arena.
       $arena.html("");
 
+      $.delay(60000);
+      $arena.html('<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+/*
       $(".loading-wrapper").removeClass("hidden");
       var getRes = getResultUrl(year, gender, notfamous);
       console.log(getRes);
@@ -101,7 +108,7 @@ function resizePhoto(link) {
     });
   });
 })(jQuery);
-
+*/
 function outputUpdate(vol) {
   document.querySelector("#birthyear").value = vol;
 }
