@@ -30,3 +30,4 @@ theme: minima
 exclude:
   - Gemfile
   - Gemfile.lock
+  - node_modules/*
