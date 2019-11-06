@@ -38,7 +38,7 @@ layout: default
     <div class="loading-wrapper hidden row">
         <div class="loading col-md-6 col-md-offset-3"> 🥊</div>
         <div class="col-md-6 col-md-offset-3">
-            <br> <em>calculating matchup...</em>
+            <br> <em class="calc-matchup">calculating matchup...</em>
         </div>
     </div>
     <div class="fighter"></div>

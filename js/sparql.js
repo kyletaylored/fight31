@@ -55,7 +55,13 @@ function getResultUrl(year, gender, notfamous) {
     "ORDER BY DESC (?linkcount) \n" +
     "LIMIT 25";
 
-  return wdk.sparqlQuery(sparql);
+  // Prepare object
+  const obj = {
+    url: wdk.sparqlQuery(sparql),
+    uri: encodeURIComponent(sparql)
+  };
+
+  return obj;
 }
 
 window.getResultUrl = getResultUrl;
