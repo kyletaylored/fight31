@@ -1,4 +1,4 @@
-name: Example Caching with npm
+name: Run browserify on push
 
 on: push
 
