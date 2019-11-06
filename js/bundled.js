@@ -1,4 +1,73 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+const wdk = require("wikibase-sdk")({
+  instance: "https://www.wikidata.org",
+  sparqlEndpoint: "https://query.wikidata.org/sparql"
+});
+
+/**
+ * Returns the URL to fetch for the JSON results from Wikimedia
+ * @param {int} year The year you were born.
+ * @param {string} gender Your identified gender.
+ */
+function getResultUrl(year, gender, notfamous) {
+  // Define gender codes
+  let g = {
+    male: "Q6581097",
+    female: "Q6581072",
+    intersex: "Q1097630",
+    "non-binary": "Q48270",
+    "transgender female": "Q1052281",
+    "transgender male": "Q2449503"
+  };
+
+  // Map sex to code.
+  let genderQuery = "# gender query \n";
+  let newGen = g[gender];
+  if (typeof newGen !== "undefined") {
+    genderQuery = `wdt:P21 wd:${newGen} ; \n`;
+  }
+
+  // Check for famous people.
+  let lc = notfamous ? "1" : "50";
+
+  // Update year
+  year = year - 31;
+
+  const sparql =
+    "SELECT ?name ?picture ?born ?died ?wikipedia_article WHERE { \n" +
+    "?person wdt:P31 wd:Q5; \n" +
+    "wdt:P18 ?picture; \n" +
+    genderQuery +
+    "wdt:P569 ?born . \n" +
+    "OPTIONAL { ?person wdt:P570 ?died . } " +
+    'FILTER((?born >= "' +
+    year +
+    '-01-01T00:00:00Z"^^xsd:dateTime) && (?born <= "' +
+    year +
+    '-12-31T23:59:59Z"^^xsd:dateTime)) \n' +
+    "?person wikibase:sitelinks ?linkcount . \n" +
+    "FILTER(?linkcount > " +
+    lc +
+    " ) \n" +
+    "?person rdfs:label ?name . \n" +
+    'FILTER((LANG(?name)) = "en") \n' +
+    "?wikipedia_article schema:about ?person; schema:isPartOf <https://en.wikipedia.org/> . \n" +
+    "} \n" +
+    "ORDER BY DESC (?linkcount) \n" +
+    "LIMIT 25";
+
+  // Prepare object
+  const obj = {
+    url: wdk.sparqlQuery(sparql),
+    uri: encodeURIComponent(sparql)
+  };
+
+  return obj;
+}
+
+window.getResultUrl = getResultUrl;
+
+},{"wikibase-sdk":29}],2:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -84,7 +153,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -171,76 +240,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":1,"./encode":2}],4:[function(require,module,exports){
-const wdk = require("wikibase-sdk")({
-  instance: "https://www.wikidata.org",
-  sparqlEndpoint: "https://query.wikidata.org/sparql"
-});
-
-/**
- * Returns the URL to fetch for the JSON results from Wikimedia
- * @param {int} year The year you were born.
- * @param {string} gender Your identified gender.
- */
-function getResultUrl(year, gender, notfamous) {
-  // Define gender codes
-  let g = {
-    male: "Q6581097",
-    female: "Q6581072",
-    intersex: "Q1097630",
-    "non-binary": "Q48270",
-    "transgender female": "Q1052281",
-    "transgender male": "Q2449503"
-  };
-
-  // Map sex to code.
-  let genderQuery = "# gender query \n";
-  let newGen = g[gender];
-  if (typeof newGen !== "undefined") {
-    genderQuery = `wdt:P21 wd:${newGen} ; \n`;
-  }
-
-  // Check for famous people.
-  let lc = notfamous ? "1" : "50";
-
-  // Update year
-  year = year - 31;
-
-  const sparql =
-    "SELECT ?name ?picture ?born ?died ?wikipedia_article WHERE { \n" +
-    "?person wdt:P31 wd:Q5; \n" +
-    "wdt:P18 ?picture; \n" +
-    genderQuery +
-    "wdt:P569 ?born . \n" +
-    "OPTIONAL { ?person wdt:P570 ?died . } " +
-    'FILTER((?born >= "' +
-    year +
-    '-01-01T00:00:00Z"^^xsd:dateTime) && (?born <= "' +
-    year +
-    '-12-31T23:59:59Z"^^xsd:dateTime)) \n' +
-    "?person wikibase:sitelinks ?linkcount . \n" +
-    "FILTER(?linkcount > " +
-    lc +
-    " ) \n" +
-    "?person rdfs:label ?name . \n" +
-    'FILTER((LANG(?name)) = "en") \n' +
-    "?wikipedia_article schema:about ?person; schema:isPartOf <https://en.wikipedia.org/> . \n" +
-    "} \n" +
-    "ORDER BY DESC (?linkcount) \n" +
-    "LIMIT 25";
-
-  return wdk.sparqlQuery(sparql);
-}
-
-window.getResultUrl = getResultUrl;
-
-},{"wikibase-sdk":29}],5:[function(require,module,exports){
+},{"./decode":2,"./encode":3}],5:[function(require,module,exports){
 const toDateObject = require('./wikibase_time_to_date_object')
 
 const helpers = {}
@@ -1346,7 +1352,7 @@ module.exports = instance => {
   }
 }
 
-},{"./querystring_lite":27,"querystring":3}],27:[function(require,module,exports){
+},{"./querystring_lite":27,"querystring":4}],27:[function(require,module,exports){
 module.exports = {
   stringify: queryObj => {
     var qstring = ''
@@ -1439,4 +1445,4 @@ const validateEndpoint = (name, url) => {
 
 module.exports = WBK
 
-},{"../lib/helpers/rank":8,"../lib/helpers/sitelinks":15,"./helpers/helpers":5,"./helpers/parse_responses":7,"./helpers/simplify":9,"./queries/get_entities":18,"./queries/get_entities_from_sitelinks":19,"./queries/get_entity_revision":20,"./queries/get_many_entities":21,"./queries/get_reverse_claims":22,"./queries/get_revisions":23,"./queries/search_entities":24,"./queries/sparql_query":25,"./utils/build_url":26,"./utils/utils":28}]},{},[4]);
+},{"../lib/helpers/rank":8,"../lib/helpers/sitelinks":15,"./helpers/helpers":5,"./helpers/parse_responses":7,"./helpers/simplify":9,"./queries/get_entities":18,"./queries/get_entities_from_sitelinks":19,"./queries/get_entity_revision":20,"./queries/get_many_entities":21,"./queries/get_reverse_claims":22,"./queries/get_revisions":23,"./queries/search_entities":24,"./queries/sparql_query":25,"./utils/build_url":26,"./utils/utils":28}]},{},[1]);

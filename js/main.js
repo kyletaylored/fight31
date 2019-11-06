@@ -14,11 +14,15 @@ function resizePhoto(link) {
   return "https://commons.wikimedia.org/w/thumb.php?width=500&f=" + link.substring(link.lastIndexOf('/')+1);
 }
 
-$.wait = function( callback, seconds){
-   return window.setTimeout( callback, seconds * 1000 );
+function outputUpdate(vol) {
+  document.querySelector("#birthyear").value = vol;
 }
 
 (function ($) {
+
+  $.wait = function( callback, seconds){
+    return window.setTimeout( callback, seconds * 1000 );
+ }
 
   $(document).ready(function () {
     // Populate years.
@@ -65,19 +69,20 @@ $.wait = function( callback, seconds){
       console.log("notfamous", notfamous);
 
       // Empty arena.
-      $arena.html("");
+      $arena.html("");      
 
-      $.delay(60000);
-      $arena.html('<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-/*
       $(".loading-wrapper").removeClass("hidden");
       var getRes = getResultUrl(year, gender, notfamous);
       console.log(getRes);
 
+      // https://query.wikidata.org/#SELECT%20%2a%20WHERE%20%7B%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%20%7D%0ALIMIT%20100
+      // Add wikidata query debug.
+      $arena.append("<a style='padding-bottom:30px' target='_blank' href='https://query.wikidata.org/#"+getRes.uri+"'>(Wikidata Query)</a>");
+
       $.ajax({
-        url: getRes
+        url: getRes.url,
+        timeout: 60000
       }).done(function (data) {
-        $(".loading-wrapper").addClass("hidden");
         console.log(data);
         var results = cleanFighters(data.results.bindings);
         console.log(results);
@@ -99,16 +104,21 @@ $.wait = function( callback, seconds){
           $("html, body").animate({
             scrollTop: $(document).height()
           }, 1000);
+
         } else {
           $arena.html(
             "<h2 class='answer'>You're a snowflake, or they're all dead by now (likely).</h2>"
           );
         }
+      }).fail(function( jqXHR, textStatus, errorThrown ) {
+        console.log("error:", errorThrown);
+        var iframe = '<iframe src="https://player.vimeo.com/video/148751763?autoplay=1&loop=1&autopause=0" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+        $arena.html(iframe);
+      }).always(function(){
+        // Always hide the loading wrapper.
+        $(".loading-wrapper").addClass("hidden");
       });
     });
   });
+
 })(jQuery);
-*/
-function outputUpdate(vol) {
-  document.querySelector("#birthyear").value = vol;
-}
